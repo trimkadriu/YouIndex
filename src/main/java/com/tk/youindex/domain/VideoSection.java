@@ -133,7 +133,7 @@ public class VideoSection extends PersistentObject {
     @NotNull(message = "text.validation.error.NullVideoStartTime")
     @NotEmpty(message = "text.validation.error.EmptyVideoStartTime")
     @Length(max = 9, message = "text.validation.error.NotValidVideoIdStartTime")
-    @Column(name = "start_time", nullable = false, length = 9)
+    @Column(name = "end_time", nullable = false, length = 9)
     public int getEndTime() {
         return endTime;
     }
