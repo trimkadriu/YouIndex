@@ -14,6 +14,8 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import com.tk.youindex.domain.validationgroup.CreateAction;
+import com.tk.youindex.domain.validationgroup.EditAction;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.hibernate.annotations.Type;
@@ -43,9 +45,9 @@ public class User extends PersistentObject {
     private boolean adminUser;
     private Set<VideoSection> videoSections;
 
-    @NotNull(message = "text.validation.error.NullUserName")
-    @NotEmpty(message = "text.validation.error.EmptyUserName")
-    @Length(min = 2, max = 32, message = "text.validation.error.NotValidUserName")
+    @NotNull(message = "text.validation.error.NullUserName", groups = {CreateAction.class, EditAction.class})
+    @NotEmpty(message = "text.validation.error.EmptyUserName", groups = {CreateAction.class, EditAction.class})
+    @Length(min = 2, max = 32, message = "text.validation.error.NotValidUserName", groups = {CreateAction.class, EditAction.class})
     @Column(name = "user_name", nullable = false, length = 32)
     public String getName() {
         return name;
@@ -55,10 +57,10 @@ public class User extends PersistentObject {
         this.name = name;
     }
 
-    @NotNull(message = "text.validation.error.NullUserEmail")
-    @NotEmpty(message = "text.validation.error.EmptyUserEmail")
-    @Length(min = 5, max = 64, message = "text.validation.error.NotValidLengthUserEmail")
-    @Pattern(message = "text.validation.error.NotValidUserEmail", regexp = "^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-+]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
+    @NotNull(message = "text.validation.error.NullUserEmail", groups = {CreateAction.class, EditAction.class})
+    @NotEmpty(message = "text.validation.error.EmptyUserEmail", groups = {CreateAction.class, EditAction.class})
+    @Length(min = 5, max = 64, message = "text.validation.error.NotValidLengthUserEmail", groups = {CreateAction.class, EditAction.class})
+    @Pattern(message = "text.validation.error.NotValidUserEmail", regexp = "^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-+]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", groups = {CreateAction.class, EditAction.class})
     @Column(name = "email", nullable = false, length = 64)
     public String getEmail() {
         return email;
@@ -68,9 +70,9 @@ public class User extends PersistentObject {
         this.email = email;
     }
 
-    @NotNull(message = "text.validation.error.NullUserPassword")
-    @NotEmpty(message = "text.validation.error.EmptyUserPassword")
-    @Length(max = 128, message = "text.validation.error.NotValidUserPassword")
+    @NotNull(message = "text.validation.error.NullUserPassword", groups = {CreateAction.class, EditAction.class})
+    @NotEmpty(message = "text.validation.error.EmptyUserPassword", groups = {CreateAction.class, EditAction.class})
+    @Length(max = 128, message = "text.validation.error.NotValidUserPassword", groups = {CreateAction.class, EditAction.class})
     @Column(name = "password", nullable = false, length = 128)
     public String getPassword() {
         return password;
@@ -80,9 +82,9 @@ public class User extends PersistentObject {
         this.password = password;
     }
 
-    @NotNull(message = "text.validation.error.NullUserPasswordSalt")
-    @NotEmpty(message = "text.validation.error.EmptyUserPasswordSalt")
-    @Length(max = 128, message = "text.validation.error.NotValidUserPasswordSalt")
+    @NotNull(message = "text.validation.error.NullUserPasswordSalt", groups = {CreateAction.class, EditAction.class})
+    @NotEmpty(message = "text.validation.error.EmptyUserPasswordSalt", groups = {CreateAction.class, EditAction.class})
+    @Length(max = 128, message = "text.validation.error.NotValidUserPasswordSalt", groups = {CreateAction.class, EditAction.class})
     @Column(name = "password_salt", nullable = false, length = 128)
     public String getPasswordSalt() {
         return passwordSalt;
@@ -92,7 +94,7 @@ public class User extends PersistentObject {
         this.passwordSalt = passwordSalt;
     }
 
-    @NotNull(message = "text.validation.error.NullUserLastLogin")
+    @NotNull(message = "text.validation.error.NullUserLastLogin", groups = {CreateAction.class, EditAction.class})
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "last_login", nullable = false, precision = 3)
     public Date getLastLogin() {
@@ -103,7 +105,7 @@ public class User extends PersistentObject {
         this.lastLogin = lastLogin;
     }
 
-    @NotNull(message = "text.validation.error.NullUserDateAdded")
+    @NotNull(message = "text.validation.error.NullUserDateAdded", groups = {CreateAction.class, EditAction.class})
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "date_added", nullable = false, precision = 3)
     public Date getDateAdded() {
@@ -114,8 +116,8 @@ public class User extends PersistentObject {
         this.dateAdded = dateAdded;
     }
 
-    @NotNull(message = "text.validation.error.NullUserStatus")
-    @NotEmpty(message = "text.validation.error.EmptyUserStatus")
+    @NotNull(message = "text.validation.error.NullUserStatus", groups = {CreateAction.class, EditAction.class})
+    @NotEmpty(message = "text.validation.error.EmptyUserStatus", groups = {CreateAction.class, EditAction.class})
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 2)
     public Status getStatus() {
@@ -126,9 +128,9 @@ public class User extends PersistentObject {
         this.status = status;
     }
 
-    @NotNull(message = "text.validation.error.NullUserActivatonHash")
-    @NotEmpty(message = "text.validation.error.EmptyUserActivatonHash")
-    @Length(min = 128, max = 128, message = "text.validation.error.NotValidUserActivatonHash")
+    @NotNull(message = "text.validation.error.NullUserActivatonHash", groups = {CreateAction.class, EditAction.class})
+    @NotEmpty(message = "text.validation.error.EmptyUserActivatonHash", groups = {CreateAction.class, EditAction.class})
+    @Length(min = 128, max = 128, message = "text.validation.error.NotValidUserActivatonHash", groups = {CreateAction.class, EditAction.class})
     @Column(name = "activation_hash", nullable = false, length = 128)
     public String getActivationHash() {
         return activationHash;
