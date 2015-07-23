@@ -12,7 +12,6 @@ import javax.transaction.Transactional;
  * Created by t.kadriu.
  */
 @Service
-@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -20,6 +19,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String createUser(User user) {
-        return userDao.createUser(user);
+        userDao.save(user);
+        return "true";
     }
 }
