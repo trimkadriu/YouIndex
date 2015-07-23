@@ -119,6 +119,11 @@
 
         <!-- Other dependencies -->
         <dependency>
+            <groupId>com.tk</groupId>
+            <artifactId>generic-dao</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
             <version>${commons.lang.version}</version>
