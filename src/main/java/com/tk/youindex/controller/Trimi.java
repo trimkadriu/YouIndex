@@ -1,6 +1,5 @@
 package com.tk.youindex.controller;
 
-import com.tk.youindex.dao.spec.UserDao;
 import com.tk.youindex.domain.User;
 import com.tk.youindex.domain.enums.Status;
 import com.tk.youindex.service.spec.UserService;
@@ -35,7 +34,8 @@ public class Trimi {
         user.setPasswordSalt("asd");
         user.setStatus(Status.OK);
 
-        userService.createUser(user);
+        userService.createOrUpdateUser(user);
+
         return new ModelAndView("trimi").addObject("today", today.toString());
     }
 
